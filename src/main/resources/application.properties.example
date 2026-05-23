@@ -1,0 +1,21 @@
+# ============================================================
+# EXEMPLO DE CONFIGURAÇÃO — copie para application.properties
+# e preencha com suas credenciais reais
+# ============================================================
+
+spring.application.name=demo
+
+server.port=8083
+
+spring.datasource.url=jdbc:postgresql://localhost:5432/serviceSite
+spring.datasource.username=SEU_USUARIO_POSTGRES
+spring.datasource.password=SUA_SENHA_POSTGRES
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation=true
+spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect
+spring.jpa.show-sql=true
+spring.jpa.open-in-view=false
+
+# Gere uma chave segura em: https://generate-random.org/encryption-key-generator
+projeto.jwtSecret=SUA_CHAVE_JWT_AQUI_MIN_64_CARACTERES
+projeto.jwtExpirationMs=900000

@@ -22,9 +22,9 @@ public class UserController {
     }
 
     @PostMapping
-    public void inserir(@RequestBody UserDTO userDTO){
+    public ResponseEntity<Void> inserir(@RequestBody UserDTO userDTO){
         userService.inserir(userDTO);
-        ResponseEntity.ok().build();
+        return ResponseEntity.ok().build();
     }
 
     @PutMapping

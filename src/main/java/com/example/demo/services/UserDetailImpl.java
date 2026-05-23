@@ -15,10 +15,10 @@ public class UserDetailImpl implements UserDetails {
     private String password;
     private String email;
 
-    public UserDetailImpl(Long id, String password, String email, Collection<? extends GrantedAuthority> authorities) {
+    public UserDetailImpl(Long id, String email, String password, Collection<? extends GrantedAuthority> authorities) {
         this.id = id;
-        this.password = password;
         this.email = email;
+        this.password = password;
         this.authorities = authorities;
     }
 
@@ -43,7 +43,7 @@ public class UserDetailImpl implements UserDetails {
 
     @Override
     public String getUsername() {
-        return "";
+        return email;
     }
 
 
