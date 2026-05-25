@@ -1,12 +1,13 @@
 package com.example.demo.services;
 
-import com.example.demo.DTO.PerguntaDTO;
-import com.example.demo.entities.Pergunta;
-import com.example.demo.repository.PerguntaRepository;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import com.example.demo.DTO.PerguntaDTO;
+import com.example.demo.entities.Pergunta;
+import com.example.demo.repository.PerguntaRepository;
 
 @Service
 public class PerguntaService {

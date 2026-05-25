@@ -1,7 +1,6 @@
 package com.example.demo.DTO;
 
 import com.example.demo.entities.Pergunta;
-import org.springframework.beans.BeanUtils;
 
 public class PerguntaDTO {
 
@@ -11,7 +10,12 @@ public class PerguntaDTO {
     private Long usuarioId;
 
     public PerguntaDTO(Pergunta pergunta) {
-        BeanUtils.copyProperties(pergunta, this);
+        this.id = pergunta.getId();
+        this.tituloPergunta = pergunta.getTituloPergunta();
+        this.corpoPergunta = pergunta.getCorpoPergunta();
+        if (pergunta.getUsuario() != null) {
+            this.usuarioId = pergunta.getUsuario().getId();
+        }
     }
     public PerguntaDTO(){
     }

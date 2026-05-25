@@ -1,12 +1,23 @@
 package com.example.demo.controller;
 
-import com.example.demo.DTO.PerguntaDTO;
-import com.example.demo.services.PerguntaService;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import com.example.demo.DTO.PerguntaDTO;
+import com.example.demo.services.PerguntaService;
+import com.example.demo.services.UserDetailImpl;
 
 @RestController
 @RequestMapping(value = "/pergunta")
@@ -17,23 +28,27 @@ public class PerguntaController {
     private PerguntaService perguntaService;
 
     @GetMapping
-    public List<PerguntaDTO> listarTodos(){
+    public List<PerguntaDTO> listarTodos() {
         return perguntaService.listarTodos();
     }
 
     @PostMapping
-    public ResponseEntity<Void> inserir(@RequestBody PerguntaDTO perguntaDTO){
+    public ResponseEntity<Void> inserir(@RequestBody PerguntaDTO perguntaDTO, Authentication authentication) {
+        UserDetailImpl userDetail = (UserDetailImpl) authentication.getPrincipal();
+        perguntaDTO.setUsuarioId(userDetail.getId());
         perguntaService.criar(perguntaDTO);
         return ResponseEntity.ok().build();
     }
 
     @PutMapping
-    public PerguntaDTO altera(@RequestBody PerguntaDTO perguntaDTO){
+    public PerguntaDTO altera(@RequestBody PerguntaDTO perguntaDTO, Authentication authentication) {
+        UserDetailImpl userDetail = (UserDetailImpl) authentication.getPrincipal();
+        perguntaDTO.setUsuarioId(userDetail.getId());
         return perguntaService.editar(perguntaDTO);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> excluir(@PathVariable("id") Long id){
+    public ResponseEntity<Void> excluir(@PathVariable("id") Long id) {
         perguntaService.excluir(id);
         return ResponseEntity.ok().build();
     }

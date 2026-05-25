@@ -1,13 +1,13 @@
 package com.example.demo.services;
 
-import com.example.demo.entities.User;
+import java.util.ArrayList;
+import java.util.Collection;
+
 import org.jspecify.annotations.Nullable;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import com.example.demo.entities.User;
 
 public class UserDetailImpl implements UserDetails {
 
@@ -65,5 +65,9 @@ public class UserDetailImpl implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public Long getId() {
+        return id;
     }
 }

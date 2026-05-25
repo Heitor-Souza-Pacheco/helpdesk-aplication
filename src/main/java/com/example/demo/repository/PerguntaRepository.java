@@ -1,10 +1,11 @@
 package com.example.demo.repository;
 
-import com.example.demo.entities.Pergunta;
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.Optional;
+import com.example.demo.entities.Pergunta;
 
-public interface PerguntaRepository  extends JpaRepository<Pergunta, Long> {
-    Optional<Pergunta> findByUsuarioId(Long id);
+public interface PerguntaRepository extends JpaRepository<Pergunta, Long> {
+    List<Pergunta> findByUsuarioId(Long id);
 }
