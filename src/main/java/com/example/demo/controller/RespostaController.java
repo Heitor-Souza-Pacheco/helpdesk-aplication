@@ -53,6 +53,11 @@ public class RespostaController {
         return respostaService.curtir(id);
     }
 
+    @PutMapping("/descurtir/{id}")
+    public RespostaDTO descurtir(@PathVariable("id") Long id) {
+        return respostaService.descurtir(id);
+    }
+
     @PostMapping
     public ResponseEntity<Void> inserir(@RequestBody RespostaDTO respostaDTO, Authentication authentication) {
         UserDetailImpl userDetail = (UserDetailImpl) authentication.getPrincipal();

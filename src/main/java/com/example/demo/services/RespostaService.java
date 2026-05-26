@@ -46,6 +46,14 @@ public class RespostaService {
         return new RespostaDTO(respostaRepository.save(resposta));
     }
 
+    public RespostaDTO descurtir(Long id) {
+        Resposta resposta = respostaRepository.findById(id).get();
+        if (resposta.getCurtidas() > 0) {
+            resposta.setCurtidas(resposta.getCurtidas() - 1);
+        }
+        return new RespostaDTO(respostaRepository.save(resposta));
+    }
+
     public List<RespostaDTO> listarPorCurtidas() {
         return respostaRepository.findAll().stream().sorted((r1, r2) -> Integer.compare(r2.getCurtidas(), r1.getCurtidas())).map(RespostaDTO::new).toList();
     }
