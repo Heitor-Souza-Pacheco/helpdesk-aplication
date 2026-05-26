@@ -43,6 +43,7 @@ public class Resposta {
         this.id = respostaDTO.getId();
         this.corpoResposta = respostaDTO.getCorpoResposta();
         this.nomeUsuario = respostaDTO.getNomeUsuario();
+        this.curtidas = 0;
         if (respostaDTO.getPerguntaId() != null) {
             this.pergunta = new Pergunta();
             this.pergunta.setId(respostaDTO.getPerguntaId());
