@@ -8,4 +8,5 @@ import com.example.demo.entities.Pergunta;
 
 public interface PerguntaRepository extends JpaRepository<Pergunta, Long> {
     List<Pergunta> findByUsuarioId(Long id);
+    List<Pergunta> findByCategoriaPergunta(String categoria);
 }

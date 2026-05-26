@@ -19,6 +19,10 @@ public class PerguntaService {
         return perguntaRepository.findAll().stream().map(PerguntaDTO::new).toList();
     }
 
+    public List<PerguntaDTO> listarPorCategoria(String categoria) {
+        return perguntaRepository.findPerguntaByCategoriaPergunta(categoria).stream().map(PerguntaDTO::new).toList();
+    }
+
     public List<PerguntaDTO> listarPorUsuario(Long id) {
         return perguntaRepository.findByUsuarioId(id).stream().map(PerguntaDTO::new).toList();
     }

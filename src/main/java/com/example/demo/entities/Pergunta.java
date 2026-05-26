@@ -27,6 +27,9 @@ public class Pergunta implements Serializable {
     @Column(nullable = false)
     private String corpoPergunta;
 
+    @Column(nullable = false)
+    private String categoriaPergunta;
+
     @ManyToOne
     @JoinColumn(name = "usuario_id", nullable = false)
     private User usuario;
@@ -75,5 +78,13 @@ public class Pergunta implements Serializable {
 
     public void setUsuario(User usuario) {
         this.usuario = usuario;
+    }
+
+    public String getCategoriaPergunta() {
+        return categoriaPergunta;
+    }
+
+    public void setCategoriaPergunta(String categoriaPergunta) {
+        this.categoriaPergunta = categoriaPergunta;
     }
 }

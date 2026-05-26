@@ -7,6 +7,7 @@ public class PerguntaDTO {
     private Long id;
     private String tituloPergunta;
     private String corpoPergunta;
+    private String categoriaPergunta;
     private Long usuarioId;
 
     public PerguntaDTO(Pergunta pergunta) {
@@ -50,5 +51,13 @@ public class PerguntaDTO {
 
     public void setUsuarioId(Long usuarioId) {
         this.usuarioId = usuarioId;
+    }
+
+    public String getCategoriaPergunta() {
+        return categoriaPergunta;
+    }
+
+    public void setCategoriaPergunta(String categoriaPergunta) {
+        this.categoriaPergunta = categoriaPergunta;
     }
 }
