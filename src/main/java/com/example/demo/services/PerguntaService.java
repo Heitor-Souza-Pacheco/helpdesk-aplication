@@ -20,7 +20,7 @@ public class PerguntaService {
     }
 
     public List<PerguntaDTO> listarPorCategoria(String categoria) {
-        return perguntaRepository.findPerguntaByCategoriaPergunta(categoria).stream().map(PerguntaDTO::new).toList();
+        return perguntaRepository.findByCategoriaPergunta(categoria).stream().map(PerguntaDTO::new).toList();
     }
 
     public List<PerguntaDTO> listarPorUsuario(Long id) {
