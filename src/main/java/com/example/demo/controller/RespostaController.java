@@ -48,6 +48,11 @@ public class RespostaController {
         return respostaService.listarPorCurtidas();
     }
 
+    @PutMapping("/curtir/{id}")
+    public RespostaDTO curtir(@PathVariable("id") Long id) {
+        return respostaService.curtir(id);
+    }
+
     @PostMapping
     public ResponseEntity<Void> inserir(@RequestBody RespostaDTO respostaDTO, Authentication authentication) {
         UserDetailImpl userDetail = (UserDetailImpl) authentication.getPrincipal();

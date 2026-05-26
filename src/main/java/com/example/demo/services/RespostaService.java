@@ -40,6 +40,12 @@ public class RespostaService {
         respostaRepository.delete(resposta);
     }
 
+    public RespostaDTO curtir(Long id) {
+        Resposta resposta = respostaRepository.findById(id).get();
+        resposta.setCurtidas(resposta.getCurtidas() + 1);
+        return new RespostaDTO(respostaRepository.save(resposta));
+    }
+
     public List<RespostaDTO> listarPorCurtidas() {
         return respostaRepository.findAll().stream().sorted((r1, r2) -> Integer.compare(r2.getCurtidas(), r1.getCurtidas())).map(RespostaDTO::new).toList();
     }
