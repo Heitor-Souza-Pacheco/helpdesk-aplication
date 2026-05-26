@@ -14,6 +14,7 @@ public class PerguntaDTO {
         this.id = pergunta.getId();
         this.tituloPergunta = pergunta.getTituloPergunta();
         this.corpoPergunta = pergunta.getCorpoPergunta();
+        this.categoriaPergunta = pergunta.getCategoriaPergunta();
         if (pergunta.getUsuario() != null) {
             this.usuarioId = pergunta.getUsuario().getId();
         }

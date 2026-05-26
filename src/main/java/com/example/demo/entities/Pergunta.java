@@ -41,6 +41,7 @@ public class Pergunta implements Serializable {
         this.id = perguntaDTO.getId();
         this.tituloPergunta = perguntaDTO.getTituloPergunta();
         this.corpoPergunta = perguntaDTO.getCorpoPergunta();
+        this.categoriaPergunta = perguntaDTO.getCategoriaPergunta();
         if (perguntaDTO.getUsuarioId() != null) {
             User user = new User();
             user.setId(perguntaDTO.getUsuarioId());

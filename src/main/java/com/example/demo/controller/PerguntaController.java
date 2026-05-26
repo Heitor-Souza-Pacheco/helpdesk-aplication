@@ -32,6 +32,11 @@ public class PerguntaController {
         return perguntaService.listarTodos();
     }
 
+    @GetMapping("/categoria/{categoria}")
+    public List<PerguntaDTO> listarPorCategoria(@PathVariable("categoria") String categoria) {
+        return perguntaService.listarPorCategoria(categoria);
+    }
+
     @PostMapping
     public ResponseEntity<Void> inserir(@RequestBody PerguntaDTO perguntaDTO, Authentication authentication) {
         UserDetailImpl userDetail = (UserDetailImpl) authentication.getPrincipal();
