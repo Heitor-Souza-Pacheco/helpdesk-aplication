@@ -32,6 +32,12 @@ public class PerguntaController {
         return perguntaService.listarTodos();
     }
 
+    @GetMapping("/minhas")
+    public List<PerguntaDTO> listarMinhas(Authentication authentication) {
+        UserDetailImpl userDetail = (UserDetailImpl) authentication.getPrincipal();
+        return perguntaService.listarPorUsuario(userDetail.getId());
+    }
+
     @GetMapping("/categoria/{categoria}")
     public List<PerguntaDTO> listarPorCategoria(@PathVariable("categoria") String categoria) {
         return perguntaService.listarPorCategoria(categoria);
