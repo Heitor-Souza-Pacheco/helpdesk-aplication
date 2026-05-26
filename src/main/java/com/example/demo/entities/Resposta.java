@@ -1,10 +1,18 @@
 package com.example.demo.entities;
 
 import com.example.demo.DTO.RespostaDTO;
-import jakarta.persistence.*;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "tbl_pergunta")
+@Table(name = "tbl_resposta")
 public class Resposta {
 
     @Id
@@ -35,6 +43,10 @@ public class Resposta {
         if (respostaDTO.getPerguntaId() != null) {
             this.pergunta = new Pergunta();
             this.pergunta.setId(respostaDTO.getPerguntaId());
+        }
+        if (respostaDTO.getUsuarioId() != null) {
+            this.usuario = new User();
+            this.usuario.setId(respostaDTO.getUsuarioId());
         }
     }
 

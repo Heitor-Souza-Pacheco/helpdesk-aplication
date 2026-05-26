@@ -1,13 +1,23 @@
 package com.example.demo.controller;
 
-import com.example.demo.DTO.PerguntaDTO;
-import com.example.demo.DTO.RespostaDTO;
-import com.example.demo.services.RespostaService;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import com.example.demo.DTO.RespostaDTO;
+import com.example.demo.services.RespostaService;
+import com.example.demo.services.UserDetailImpl;
 
 @RestController
 @RequestMapping(value = "/resposta")
@@ -22,24 +32,30 @@ public class RespostaController {
         return respostaService.listarTodos();
     }
 
-    @GetMapping(value = "/pergunta/{id}")
-    public List<RespostaDTO> listarPorPergunta() {
-        return respostaService.listarPorPergunta(1L);
-    }
-
-    @GetMapping(value = "/usuario/{id}")
-    public List<RespostaDTO> listarPorUsuario() {
-        return respostaService.listarPorPergunta(1L);
+    @GetMapping("/pergunta/{id}")
+    public List<RespostaDTO> listarPorPergunta(@PathVariable("id") Long id) {
+        return respostaService.listarPorPergunta(id);
     }
 
     @PostMapping
-    public ResponseEntity<Void> inserir(@RequestBody RespostaDTO respostaDTO) {
+    public ResponseEntity<Void> inserir(@RequestBody RespostaDTO respostaDTO, Authentication authentication) {
+        UserDetailImpl userDetail = (UserDetailImpl) authentication.getPrincipal();
+        respostaDTO.setUsuarioId(userDetail.getId());
+        respostaDTO.setNomeUsuario(userDetail.getUsername());
         respostaService.criar(respostaDTO);
         return ResponseEntity.ok().build();
     }
 
     @PutMapping
-    public RespostaDTO altera(@RequestBody RespostaDTO respostaDTO) {
+    public RespostaDTO altera(@RequestBody RespostaDTO respostaDTO, Authentication authentication) {
+        UserDetailImpl userDetail = (UserDetailImpl) authentication.getPrincipal();
+        respostaDTO.setUsuarioId(userDetail.getId());
         return respostaService.editar(respostaDTO);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> excluir(@PathVariable("id") Long id) {
+        respostaService.excluir(id);
+        return ResponseEntity.ok().build();
     }
 }
