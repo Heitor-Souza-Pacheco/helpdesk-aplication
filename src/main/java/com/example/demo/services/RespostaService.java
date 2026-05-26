@@ -39,5 +39,9 @@ public class RespostaService {
         Resposta resposta = respostaRepository.findById(id).get();
         respostaRepository.delete(resposta);
     }
+
+    public List<RespostaDTO> listarPorCurtidas() {
+        return respostaRepository.findAll().stream().sorted((r1, r2) -> Integer.compare(r2.getCurtidas(), r1.getCurtidas())).map(RespostaDTO::new).toList();
+    }
 }
 
