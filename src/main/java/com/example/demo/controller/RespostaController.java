@@ -39,7 +39,7 @@ public class RespostaController {
     }
 
     @PutMapping
-    public PerguntaDTO altera(@RequestBody RespostaDTO respostaDTO) {
+    public RespostaDTO altera(@RequestBody RespostaDTO respostaDTO) {
         return respostaService.editar(respostaDTO);
     }
 }
