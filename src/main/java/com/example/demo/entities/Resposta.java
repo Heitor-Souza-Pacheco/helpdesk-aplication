@@ -25,6 +25,9 @@ public class Resposta {
     @Column(nullable = false)
     private String nomeUsuario;
 
+    @Column(nullable = false)
+    private int curtidas;
+
     @ManyToOne
     @JoinColumn(name = "pergunta_id")
     private Pergunta pergunta;
@@ -88,5 +91,13 @@ public class Resposta {
 
     public void setUsuario(User usuario) {
         this.usuario = usuario;
+    }
+
+    public int getCurtidas() {
+        return curtidas;
+    }
+
+    public void setCurtidas(int curtidas) {
+        this.curtidas = curtidas;
     }
 }

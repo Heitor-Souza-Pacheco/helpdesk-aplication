@@ -22,6 +22,13 @@ public class RespostaService {
         return respostaRepository.findByPerguntaId(id).stream().map(RespostaDTO::new).toList();
     }
 
+    public List<RespostaDTO> listarPorCurtidas() {
+        return respostaRepository.findAll().stream()
+                .sorted((r1, r2) -> Integer.compare(r2.getCurtidas(), r1.getCurtidas()))
+                .map(RespostaDTO::new)
+                .toList();
+    }
+
     public void criar(RespostaDTO respostaDTO){
         respostaRepository.save(new Resposta(respostaDTO));
     }

@@ -37,6 +37,11 @@ public class RespostaController {
         return respostaService.listarPorPergunta(id);
     }
 
+    @GetMapping("/curtidas")
+    public List<RespostaDTO> listarPorCurtidas() {
+        return respostaService.listarPorCurtidas();
+    }
+
     @PostMapping
     public ResponseEntity<Void> inserir(@RequestBody RespostaDTO respostaDTO, Authentication authentication) {
         UserDetailImpl userDetail = (UserDetailImpl) authentication.getPrincipal();
