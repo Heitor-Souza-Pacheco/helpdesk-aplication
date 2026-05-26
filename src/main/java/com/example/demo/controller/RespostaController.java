@@ -32,6 +32,12 @@ public class RespostaController {
         return respostaService.listarTodos();
     }
 
+    @GetMapping("/minhas")
+    public List<RespostaDTO> listarMinhas(Authentication authentication) {
+        UserDetailImpl userDetail = (UserDetailImpl) authentication.getPrincipal();
+        return respostaService.listarPorUsuario(userDetail.getId());
+    }
+
     @GetMapping("/pergunta/{id}")
     public List<RespostaDTO> listarPorPergunta(@PathVariable("id") Long id) {
         return respostaService.listarPorPergunta(id);

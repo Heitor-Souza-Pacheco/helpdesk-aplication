@@ -1,12 +1,13 @@
 package com.example.demo.services;
 
-import com.example.demo.DTO.RespostaDTO;
-import com.example.demo.entities.Resposta;
-import com.example.demo.repository.RespostaRepository;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import com.example.demo.DTO.RespostaDTO;
+import com.example.demo.entities.Resposta;
+import com.example.demo.repository.RespostaRepository;
 
 @Service
 public class RespostaService {
@@ -20,6 +21,10 @@ public class RespostaService {
 
     public List<RespostaDTO> listarPorPergunta(Long id) {
         return respostaRepository.findByPerguntaId(id).stream().map(RespostaDTO::new).toList();
+    }
+
+    public List<RespostaDTO> listarPorUsuario(Long id) {
+        return respostaRepository.findByUsuarioId(id).stream().map(RespostaDTO::new).toList();
     }
 
     public void criar(RespostaDTO respostaDTO){
