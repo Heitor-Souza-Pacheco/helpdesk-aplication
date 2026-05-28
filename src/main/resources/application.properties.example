@@ -19,3 +19,13 @@ spring.jpa.open-in-view=false
 # Gere uma chave segura em: https://generate-random.org/encryption-key-generator
 projeto.jwtSecret=SUA_CHAVE_JWT_AQUI_MIN_64_CARACTERES
 projeto.jwtExpirationMs=900000
+
+# ============================================================
+# Assistente de IA (endpoint /ia/perguntar)
+# Obtenha uma chave gratuita em: https://aistudio.google.com/app/apikey
+# Se deixar vazio, o endpoint retorna mensagem informando que a IA não foi configurada.
+# ============================================================
+ia.gemini.apiKey=SUA_CHAVE_GEMINI_AQUI
+ia.gemini.model=gemini-2.0-flash
+ia.gemini.baseUrl=https://generativelanguage.googleapis.com/v1beta
+ia.gemini.timeoutMs=20000
