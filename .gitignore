@@ -1,8 +1,9 @@
 # ===== CREDENCIAIS — NUNCA COMMITAR =====
 src/main/resources/application.properties
 src/main/resources/application-local.properties
-src/main/resources/application-*.properties
+src/main/resources/application-local.properties
 !src/main/resources/application.properties.example
+!src/main/resources/application-prod.properties
 iniciar-helpdesk.bat
 
 # ===== MAVEN =====
