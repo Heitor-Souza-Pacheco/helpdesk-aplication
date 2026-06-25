@@ -31,7 +31,14 @@ public class PerguntaService {
         perguntaRepository.save(new Pergunta(perguntaDTO));
     }
 
-    public PerguntaDTO editar(PerguntaDTO perguntaDTO){
+    public PerguntaDTO editar(PerguntaDTO perguntaDTO, Long usuarioId){
+        Pergunta pergunta = perguntaRepository.findById(perguntaDTO.getId())
+            .orElseThrow(() -> new RuntimeException("Pergunta não encontrada"));
+
+        if (!pergunta.getUsuario().getId().equals(usuarioId)) {
+            throw new RuntimeException("Você não tem permissão para editar essa pergunta.");
+        }
+
         return new PerguntaDTO(perguntaRepository.save(new Pergunta(perguntaDTO)));
     }
 

@@ -52,10 +52,15 @@ public class PerguntaController {
     }
 
     @PutMapping
-    public PerguntaDTO altera(@RequestBody PerguntaDTO perguntaDTO, Authentication authentication) {
+    public ResponseEntity<?> altera(@RequestBody PerguntaDTO perguntaDTO, Authentication authentication) {
         UserDetailImpl userDetail = (UserDetailImpl) authentication.getPrincipal();
         perguntaDTO.setUsuarioId(userDetail.getId());
-        return perguntaService.editar(perguntaDTO);
+        try {
+            PerguntaDTO resultado = perguntaService.editar(perguntaDTO, userDetail.getId());
+            return ResponseEntity.ok(resultado);
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(403).body(e.getMessage());
+        }
     }
 
     @DeleteMapping("/{id}")
