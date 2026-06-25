@@ -59,8 +59,13 @@ public class PerguntaController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> excluir(@PathVariable("id") Long id) {
-        perguntaService.excluir(id);
-        return ResponseEntity.ok().build();
+    public ResponseEntity<?> excluir(@PathVariable("id") Long id, Authentication authentication) {
+        UserDetailImpl userDetailImpl = (UserDetailImpl) authentication.getPrincipal();
+        try {
+            perguntaService.excluir(id, userDetailImpl.getId());
+            return ResponseEntity.ok().build();
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(403).body(e.getMessage());
+        }
     }
 }

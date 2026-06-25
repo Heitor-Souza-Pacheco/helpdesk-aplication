@@ -35,8 +35,14 @@ public class PerguntaService {
         return new PerguntaDTO(perguntaRepository.save(new Pergunta(perguntaDTO)));
     }
 
-    public void excluir(Long id){
-        Pergunta pergunta = perguntaRepository.findById(id).get();
+    public void excluir(Long id, Long usuarioId){
+        Pergunta pergunta = perguntaRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Pergunta não encontrada"));
+        
+        if (!pergunta.getUsuario().getId().equals(usuarioId)) {
+            throw new RuntimeException("Você não tem permissão para excluir esta pergunta.");
+        }
+
         perguntaRepository.delete(pergunta);
     }
 }
